@@ -7,3 +7,15 @@
 //
 
 import Foundation
+
+class SimpleNotification {
+    var title: String
+    var date: Date
+    var id: String
+    
+    init(title: String = "Simple Notification") {
+        self.title = title
+        self.date = Date()
+        self.id = UUID().uuidString
+    }
+}

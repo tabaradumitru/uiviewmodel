@@ -9,22 +9,30 @@
 import UIKit
 
 class SelfClosingPopupViewController: UIViewController {
-
+    @IBOutlet weak var numberOfSecondsLabel: UILabel!
+    
+    var runCount = 9
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        closePopupAfterNSeconds()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func closePopupAfterNSeconds() {
+        
+        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+            self.changeLabelText(textToPrint: "\(self.runCount)")
+            self.runCount -= 1
+            
+            if self.runCount == -1 {
+                timer.invalidate()
+                self.dismiss(animated: true)
+            }
+        }
     }
-    */
-
+    
+    func changeLabelText(textToPrint: String) {
+        self.numberOfSecondsLabel.text = textToPrint
+    }
 }
